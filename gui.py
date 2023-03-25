@@ -23,12 +23,25 @@ import os
 """
 
 quarterMap = {
+    "Spring 2023": "4440",
+    "Winter 2023": "4420",
     "Fall 2022": "4400",
     "Summer 2022": "4360",
     "Spring 2022": "4340",
     "Winter 2022": "4320",
     "Fall 2021": "4300",
     "Summer 2021": "4260" 
+}
+
+quarterNameMap = {
+    "Spring 2023": "spring2023",
+    "Winter 2023": "winter2023",
+    "Fall 2022": "fall2022",
+    "Summer 2022": "summer2022",
+    "Spring 2022": "spring2022",
+    "Winter 2022": "winter2022",
+    "Fall 2021": "fall2021",
+    "Summer 2021": "summer2021"
 }
   
 def get_courses(core, quarterCode):  
@@ -133,7 +146,11 @@ def validateInput():
 
         rows = ["CLASS", "DESCRIPTION", "CORES SATISFIED", "DAYS/TIMES", "ROOM", "INSTRUCTOR", "UNITS", "SEATS REMAINING"] 
     
-        with open(f"scu_double_dips-{quarterMap.get(quarter)}.csv", "w") as csv_file: 
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        filename = f"scu_double_dips-{quarterNameMap.get(quarter)}.csv"
+        file_path = os.path.join(script_dir, filename)
+    
+        with open(file_path, "w") as csv_file: 
             csv_writer = csv.writer(csv_file)
             csv_writer.writerow(rows) # write header
 
